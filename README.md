@@ -7,7 +7,7 @@ Repo chứa các bài thực hành môn Cấu trúc dữ liệu và giải thu�
 | Cây nhị phân dạng mảng | Cây quyết định cảnh báo học vụ, lưu trong mảng, `left`/`right` là chỉ số | [TreeArrayPractice](TreeArrayPractice/) |
 | Smart Service Desk | Mô phỏng tiếp nhận và phục vụ khách bằng Queue, Stack, List | [SmartServiceDesk](SmartServiceDesk/) |
 
-Mỗi thư mục có `README.md` riêng mô tả bài toán, cách chạy và kết quả.
+Mỗi thư mục có `README.md` riêng mô tả bài toán, cách chạy.
 
 **Biên dịch chung:**
 ```bash
