@@ -1,5 +1,4 @@
-#ifndef STUDENT_H
-#define STUDENT_H
+#pragma once
 #include <string>
 
 const int MAX_STUS = 1000;
@@ -8,7 +7,7 @@ struct Student{
     std::string id, name;
     double gpa;
     int credits;
-    int discripline; // 0=khong vi pham, 1 = co vi pham
+    int discipline; // 0=khong vi pham, 1 = co vi pham
     int inputIndex;  // thu tu dong du lieu ttrong csv
 };
 
@@ -26,4 +25,3 @@ bool readCSV(const std::string& path, Student all[], int& nAll,
 void printList(const Student a[], int n);
 void printErr(const RejectedLine errs[], int nErr);
 
-#endif

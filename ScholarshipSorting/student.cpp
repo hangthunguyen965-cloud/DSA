@@ -61,7 +61,7 @@ static string checkLine(const string& line, const Student all[], int nAll, Stude
     if (!parseInt(f[4], dis)) return "Ky luat khong phai so nguyen!";
     if (dis != 0 && dis != 1) return "Ky luat phai 0 va 1";
     sv.id = f[0]; sv.name = f[1];
-    sv.gpa = gpa; sv.credits = cr; sv.discripline = dis;
+    sv.gpa = gpa; sv.credits = cr; sv.discipline = dis;
     return "";
 }
  
@@ -105,7 +105,7 @@ void printList(const Student a[], int n) {
              << setw(22) << a[i].name
              << fixed << setprecision(2) << setw(7) << a[i].gpa
              << setw(9) << a[i].credits
-             << a[i].discripline << "\n";
+             << a[i].discipline << "\n";
 }
 
 void printErr(const RejectedLine errs[], int nErr) {
