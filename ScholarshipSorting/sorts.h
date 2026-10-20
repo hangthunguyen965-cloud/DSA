@@ -1,7 +1,7 @@
 #pragma once
 #include "student.h"
 
-enum SortAlgo { INSERTION = 1, SELECTION = 2, BUBBLE = 3 };
+enum SortAlgo { INSERTION = 1, SELECTION = 2, BUBBLE = 3, QUICK = 4};
 
 const char* algoName(SortAlgo algo);
 void copyArray(const Student src[], Student dst[], int n);

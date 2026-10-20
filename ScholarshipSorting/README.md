@@ -1,10 +1,9 @@
 # Bài thực hành: Quản lý xét học bổng và công bố bảng xếp hạng sinh viên
 - **Môn:** Cấu trúc dữ liệu và giải thuật – **Bài 4:** Các giải thuật sắp xếp
-- **Ngôn ngữ:** C++11. Ba thuật toán được tự cài đặt, không dùng `qsort()` hay `std::sort()`.
-
+- **Ngôn ngữ:** C++11. Bốn thuật toán (Insertion, Selection, Bubble, Quick Sort 3 pivot) được tự cài đặt, không dùng `qsort()` hay `std::sort()`.
 ## 1. Bài toán
 
-Chương trình đọc danh sách sinh viên từ file CSV, kiểm tra dữ liệu, lọc hồ sơ đủ điều kiện học bổng, xếp hạng bằng Insertion, Selection hoặc Bubble Sort, rồi hiển thị Top K, thống kê và ghi kết quả ra file.
+Chương trình đọc danh sách sinh viên từ file CSV, kiểm tra dữ liệu, lọc hồ sơ đủ điều kiện học bổng, xếp hạng bằng Insertion, Selection, Bubble Sort hoặc Quick sort rồi hiển thị Top K, thống kê và ghi kết quả ra file.
 
 **Quy tắc đủ điều kiện:** GPA ≥ 3.20, tích lũy ≥ 24 tín chỉ, không vi phạm kỷ luật (`discipline = 0`).
 
@@ -25,7 +24,7 @@ ScholarshipSorting/
 ├── main.cpp         Menu và luồng chương trình
 ├── student.h/.cpp   Struct Student, đọc CSV, kiểm tra từng bản ghi
 ├── ranking.h/.cpp   Lọc đủ điều kiện, hàm so sánh comesBefore
-├── sorts.h/.cpp     Insertion, Selection, Bubble Sort + đếm so sánh/di chuyển
+├── sorts.h/.cpp     Insertion, Selection, Bubble Sort, Quick Sort 3 pivot + đếm so sánh/di chuyển
 ├── output.h/.cpp    Ghi valid.csv, rejected.csv, ranked.csv, summary.txt
 ├── students.csv     Dữ liệu đầu vào
 └── test_cases.md    Minh chứng kiểm thử
@@ -45,11 +44,11 @@ g++ -std=c++11 main.cpp student.cpp ranking.cpp sorts.cpp output.cpp -o scholar
 |---|---|
 | 1 | Đọc CSV (nhập tên file, ví dụ `students.csv`), kiểm tra và lọc điều kiện |
 | 2 | Xem dòng lỗi và hồ sơ bị loại kèm lý do |
-| 3 | Xếp hạng: chọn thuật toán (1–3) và tiêu chí (chính hoặc chỉ GPA) |
+| 3 | Xếp hạng: chọn thuật toán (1–4) và tiêu chí (chính hoặc chỉ GPA) |
 | 4 | Hiển thị Top K |
 | 5 | Thống kê số hồ sơ |
 | 6 | Ghi file kết quả |
-| 7 | Bảng so sánh 3 thuật toán × 2 tiêu chí |
+| 7 | Bảng so sánh 4 thuật toán × 2 tiêu chí |
 
 Luồng thường dùng: **1 → 3 → 4 → 6**. Chương trình nhắc nếu chọn sai thứ tự. Sau khi chạy mục 7, cần chọn lại mục 3 trước khi xem Top K hoặc ghi file.
 
@@ -72,6 +71,13 @@ File đầu vào không bị ghi đè, chương trình từ chối nếu file đ
 - **`inputIndex`** lưu thứ tự xuất hiện trong CSV để kiểm chứng tính ổn định.
 - **Luôn sắp xếp trên bản sao** của mảng hợp lệ, nên chạy lại nhiều thuật toán trên cùng dữ liệu gốc.
 - **Quy ước đếm:** *so sánh* là mỗi lần gọi `comesBefore`; *di chuyển* là số phép gán phần tử, một lần hoán đổi tính 3.
+**Quick Sort 3 pivot (chia dãy thành 4 phần):**
+1. Chọn 3 pivot ở vị trí 1/4, 1/2, 3/4 của đoạn đang xét, sắp chúng tăng dần bằng `comesBefore`.
+2. Mỗi phần tử còn lại được so với pivot giữa rồi một pivot bên cạnh (2 lần so sánh) để xếp vào 1 trong 4 nhóm: `≤ p0`, `(p0, p1]`, `(p1, p2]`, `> p2`.
+3. Xếp lại thành: nhóm 0, p0, nhóm 1, p1, nhóm 2, p2, nhóm 3. Ba pivot đã đứng đúng vị trí cuối cùng.
+4. Đệ quy trên 4 nhóm. Đoạn ngắn hơn 8 phần tử chuyển sang Insertion Sort.
+
+Bước phân hoạch dùng một **mảng phụ** cùng kích thước để giữ thứ tự tương đối trong từng nhóm. Cùng quy ước đếm với ba thuật toán còn lại: *so sánh* là mỗi lần gọi `comesBefore`, *di chuyển* là số phép chép phần tử.
 
 ## 7. Kết quả
 
@@ -87,12 +93,17 @@ File đầu vào không bị ghi đè, chương trình từ chối nếu file đ
 | Insertion | Chỉ GPA | 561 | 613 | Có |
 | Selection | Chỉ GPA | 1225 | 126 | **Không** |
 | Bubble | Chỉ GPA | 1170 | 1545 | Có |
+| Quick Sort (4) | Xếp hạng chính | 267 | 337 | – |
+| Quick Sort (4) | Chỉ GPA | 248 | 321 | **Không** |
 
 ## 8. Nhận xét
 
-- Ở xếp hạng chính, không có hai hồ sơ nào bằng nhau hoàn toàn (mã SV phân định), nên ba thuật toán ra cùng một thứ tự.
-- **Tính ổn định:** Insertion và Bubble giữ nguyên thứ tự nhập của các hồ sơ cùng GPA. Selection **không ổn định** vì hoán đổi hai phần tử cách xa nhau, có thể đảo thứ tự các phần tử bằng nhau.
+- Ở xếp hạng chính, không có hai hồ sơ nào bằng nhau hoàn toàn (mã SV phân định), nên cả bốn thuật toán ra cùng một thứ tự.
+- **Tính ổn định:** Insertion và Bubble giữ nguyên thứ tự nhập của các hồ sơ cùng GPA. **Selection và Quick Sort không ổn định**: Selection hoán đổi hai phần tử cách xa nhau, còn Quick Sort đưa các phần tử bằng pivot vào nhóm đứng trước pivot dù ban đầu chúng đứng sau.
 - **Số phép so sánh:** Selection luôn so sánh nhiều nhất (n(n−1)/2) dù dữ liệu thế nào. Insertion ít hơn rõ rệt vì dừng sớm khi tìm được chỗ chèn.
 - **Số phép di chuyển:** Selection ít nhất (tối đa một lần hoán đổi mỗi vòng), Bubble nhiều nhất do hoán đổi từng cặp kề nhau.
 - **Lựa chọn:** nếu cần giữ thứ tự nhập khi trùng khóa thì chọn Insertion (ít so sánh hơn Bubble). Nếu chi phí ghi (di chuyển) đắt thì Selection có lợi, đổi lại không ổn định.
-- Cả ba đều O(n²) nên chỉ phù hợp dữ liệu cỡ nhỏ như bài này.
+- Insertion, Selection và Bubble đều O(n²). Quick Sort trung bình O(n log n) nhưng trường hợp xấu nhất vẫn có thể O(n²) và cần thêm O(n) bộ nhớ cho mảng phụ.
+- **Quick Sort cần ít phép so sánh nhất:** 267 so với 638 (Insertion), 1180 (Bubble) và 1225 (Selection) ở xếp hạng chính. Chia 3 pivot thành 4 phần giúp mỗi lần phân hoạch thu hẹp dãy nhanh hơn so với chia đôi, đổi lại mỗi phần tử tốn 2 lần so sánh ở mỗi tầng.
+- **Số phép di chuyển của Quick Sort** nhiều hơn Selection vì mỗi lần phân hoạch phải chép phần tử qua mảng phụ rồi chép ngược lại.
+- **Lựa chọn thực tế:** cần tốc độ trên dữ liệu lớn thì dùng Quick Sort, cần giữ thứ tự nhập khi trùng khóa thì dùng Insertion Sort (hoặc Bubble Sort), cần ít thao tác ghi nhất thì dùng Selection Sort.

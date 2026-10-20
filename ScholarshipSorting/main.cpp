@@ -67,8 +67,8 @@ static void xemBiLoai() {
 // F3 + F4
 static void xepHang() {
     if (!coDuLieu()) return;
-    cout << "1. Insertion Sort\n2. Selection Sort\n3. Bubble Sort\n";
-    int al = docSo("Thuat toan: ", 1, 3);
+    cout << "1. Insertion Sort\n2. Selection Sort\n3. Bubble Sort\n4. Quick Sort (3 pivot, chia 4 phan)\n";
+    int al = docSo("Thuat toan: ", 1, 4);
     cout << "1. Xep hang chinh (GPA, tin chi, ma SV)\n"
          << "2. Chi GPA giam dan (kiem tra tinh on dinh)\n";
     int md = docSo("Tieu chi: ", 1, 2);
@@ -127,7 +127,7 @@ static void soSanh() {
          << setw(10) << "So sanh" << setw(10) << "Di chuyen" << "On dinh\n"
          << string(64, '-') << "\n";
     for (int md = 1; md <= 2; md++)
-        for (int al = 1; al <= 3; al++) {
+        for (int al = 1; al <= 4; al++) {
             copyArray(valid, work, info.nValid);
             SortStats st = sortStudents(work, info.nValid, (SortAlgo)al, (RankMode)md);
             cout << left << setw(16) << algoName((SortAlgo)al)
