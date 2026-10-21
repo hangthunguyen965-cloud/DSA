@@ -7,7 +7,7 @@ Repo chứa các bài thực hành môn Cấu trúc dữ liệu và giải thu�
 | Cây nhị phân dạng mảng | Cây quyết định cảnh báo học vụ, lưu trong mảng, `left`/`right` là chỉ số | [TreeArrayPractice](TreeArrayPractice/) |
 | Smart Service Desk | Mô phỏng tiếp nhận và phục vụ khách bằng Queue, Stack, List | [SmartServiceDesk](SmartServiceDesk/) |
 | Cây nhị phân dùng con trỏ | Cùng bài cây quyết định cảnh báo học vụ, cài đặt bằng con trỏ `Node*` với `new`/`delete` | [TreePointer](TreePointer/) |
-| Xét học bổng và xếp hạng | Lọc hồ sơ, xếp hạng bằng Insertion, Selection, Bubble Sort, so sánh số lần so sánh và di chuyển | [ScholarshipSorting](ScholarshipSorting/) |
+| Xét học bổng và xếp hạng | Lọc hồ sơ, xếp hạng bằng Insertion, Selection, Bubble Sort, Quick sort so sánh số lần so sánh và di chuyển | [ScholarshipSorting](ScholarshipSorting/) |
 
 Mỗi thư mục có `README.md` riêng mô tả bài toán, cách chạy.
 
