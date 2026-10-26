@@ -8,7 +8,7 @@ Repo chứa các bài thực hành môn Cấu trúc dữ liệu và giải thu�
 | Smart Service Desk | Mô phỏng tiếp nhận và phục vụ khách bằng Queue, Stack, List | [SmartServiceDesk](SmartServiceDesk/) |
 | Cây nhị phân dùng con trỏ | Cùng bài cây quyết định cảnh báo học vụ, cài đặt bằng con trỏ `Node*` với `new`/`delete` | [TreePointer](TreePointer/) |
 | Xét học bổng và xếp hạng | Lọc hồ sơ, xếp hạng bằng Insertion, Selection, Bubble Sort, Quick sort so sánh số lần so sánh và di chuyển | [ScholarshipSorting](ScholarshipSorting/) |
-
+| Tra cứu sản phẩm theo mã | Các thuật toán tìm kiếm và sắp xếp tự cài đặt, không dùng hàm tìm kiếm hay sắp xếp có sẵn của thư viện | [ProductSearch](ProductSearch/) |
 Mỗi thư mục có `README.md` riêng mô tả bài toán, cách chạy.
 
 **Biên dịch chung:**
