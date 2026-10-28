@@ -9,6 +9,9 @@ Repo chứa các bài thực hành môn Cấu trúc dữ liệu và giải thu�
 | Cây nhị phân dùng con trỏ | Cùng bài cây quyết định cảnh báo học vụ, cài đặt bằng con trỏ `Node*` với `new`/`delete` | [TreePointer](TreePointer/) |
 | Xét học bổng và xếp hạng | Lọc hồ sơ, xếp hạng bằng Insertion, Selection, Bubble Sort, Quick sort so sánh số lần so sánh và di chuyển | [ScholarshipSorting](ScholarshipSorting/) |
 | Tra cứu sản phẩm theo mã | Các thuật toán tìm kiếm và sắp xếp tự cài đặt, không dùng hàm tìm kiếm hay sắp xếp có sẵn của thư viện | [ProductSearch](ProductSearch/) |
+| Cây nhị phân tìm kiếm | Chương trình dòng lệnh quản lý danh mục sản phẩm của một cửa hàng nhỏ bằng **cây nhị phân tìm kiếm (BST)** | [BinarySearchTree](BinarySearchTree/) |
+| Quản lý danh sách bệnh nhân đã đăng ký tại phòng khám | Chương trình dòng lệnh mô phỏng việc tiếp nhận bệnh nhân tại quầy của một phòng khám nhỏ. Danh sách đăng ký lưu bằng **mảng**, hàng đợi cũng cài đặt bằng **mảng** theo nguyên tắc **FIFO**.  | [PatientQueue](PatientQueue/) |
+
 Mỗi thư mục có `README.md` riêng mô tả bài toán, cách chạy.
 
 **Biên dịch chung:**

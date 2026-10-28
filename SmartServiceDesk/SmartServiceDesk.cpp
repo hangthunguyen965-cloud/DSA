@@ -9,7 +9,7 @@ using namespace std;
 const int MAX = 100000;
 
 // 1. Kieu du lieu
-struct Customer{
+struct Patient{
     string id, name, service;
     int arrivalTime = 0;
     int serviceTime = 0;
@@ -17,7 +17,7 @@ struct Customer{
 };
 
 struct Ticket{
-    Customer cust;
+    Patient cust;
     bool done = false;    
 };
 
@@ -32,8 +32,8 @@ enum ActionType { ACT_ADD, ACT_DELETE, ACT_UPDATE};
 struct Action 
 {
     ActionType type = ACT_ADD;
-    Customer oldData; 
-    Customer newData;
+    Patient oldData; 
+    Patient newData;
     bool wasWaiting = false; //ktra xem khach co dang trong queue ko
 };
 
@@ -128,7 +128,7 @@ struct Stack
     ~Stack() { clear();}
 };
 // 4.Du lieu toan cuc
-struct CustomerList
+struct PatientList
 {
     Ticket a[MAX];
     int n = 0;
@@ -136,12 +136,12 @@ struct CustomerList
 
 struct ServedRecord 
 {
-    Customer c;
+    Patient c;
     int start = 0, completion = 0;
     long long cost = 0;
 };
 
-CustomerList ds;
+PatientList ds;
 Queue waiting;
 Stack history;
 ServedRecord served[MAX];
@@ -168,8 +168,8 @@ string readLine(const string& msg) {
     return s;
 }
 
-Customer inputCus(){
-    Customer c;
+Patient inputCus(){
+    Patient c;
     c.id       = readLine("Ma: ");
     c.name       = readLine("Ho ten: ");
     c.service       = readLine("Loai dich vu: ");
